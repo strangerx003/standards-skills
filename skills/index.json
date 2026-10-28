@@ -1,0 +1,19 @@
+{
+  "skills": [
+    {
+      "name": "iec-61025",
+      "version": "1",
+      "files": ["iec-61025/SKILL.md", "iec-61025/reference/iec61025.md"]
+    },
+    {
+      "name": "mil-std-882e",
+      "version": "1",
+      "files": ["mil-std-882e/SKILL.md", "mil-std-882e/reference/mil-std-882e.md"]
+    },
+    {
+      "name": "nureg-0492",
+      "version": "1",
+      "files": ["nureg-0492/SKILL.md", "nureg-0492/reference/nureg-0492.md"]
+    }
+  ]
+}
