@@ -1,71 +1,63 @@
-# Standards Skills — Expertise-as-Skills
+# Standards Skills
 
-AI agent skills that make the agent an **instant expert on published engineering standards**. Each skill encodes the full content of one standard — procedures, symbols, formulas, tables, worked examples — not just pointers to it. On installation the agent internalises the standard's methodology and can perform the analysis exactly as the standard prescribes.
+Skills that make any AI agent an **instant expert on a published engineering standard**. Each skill encodes the complete content of one standard — its procedures, symbols, formulas, tables, worked examples and mandatory rules — not just pointers to it. Installing a skill means the agent can *perform* the standard exactly as prescribed, not merely cite it.
 
-## The standards
+Each standard is a **separate, standalone skill**. Mix and match: install one, several, or all.
 
-| Skill ID | Standard | Domain | Expertise encoded |
+## The skills
+
+| Skill ID | Standard encoded | Domain | Expertise installed |
 |---|---|---|---|
-| [`iec-61025`](skills/iec-61025/SKILL.md) | IEC 61025:2006 (2nd ed.) | Fault Tree Analysis (FTA) | Qualitative/quantitative methods, all event/gate symbols with exact formulas, immediate-cause construction, Boolean reduction, minimal cut sets, Annex B disjointing, labelling rules, report requirements |
-| [`mil-std-882e`](skills/mil-std-882e/SKILL.md) | MIL-STD-882E (with Change 1, 2023) | System Safety | 8-element process, 25 tasks with what each requires, severity/probability/RAC matrices, design order of precedence, software safety (SCC→SwCI→LOR), HTS data elements, risk acceptance, tailoring |
-| [`nureg-0492`](skills/nureg-0492/SKILL.md) | Fault Tree Handbook (US NRC, 1981, 210 pp) | Fault Tree Analysis (in-depth methodology) | Five ground rules, fault taxonomy, Boolean/probability foundations, Shannon expansion, cut-set quantification with exact equations Table XI-2/XI-3, importances, common cause, pressure-tank and three-motor examples, WASH-1400 data |
+| [`iec-61025`](skills/iec-61025/SKILL.md) | IEC 61025:2006 (2nd ed.) | Fault Tree Analysis | Both FTA methods, all event/gate symbols with exact formulas, immediate-cause construction, Boolean reduction, minimal cut sets, Annex B disjointing, labelling rules, report requirements |
+| [`mil-std-882e`](skills/mil-std-882e/SKILL.md) | MIL-STD-882E (with Change 1) | System Safety | 8-element process, all 25 tasks, severity/probability/RAC matrices, design order of precedence, software safety (SCC→SwCI→LOR), HTS data elements, risk acceptance, tailoring |
+| [`nureg-0492`](skills/nureg-0492/SKILL.md) | Fault Tree Handbook (US NRC) | Fault Tree Analysis (in-depth) | Five ground rules, fault taxonomy, Boolean/probability foundations, cut-set quantification equations (Tables XI-2/XI-3), importances, common cause, pressure-tank and three-motor examples, failure-rate data |
 
-## Why these formats
+Each skill is a self-contained folder:
 
-Skills are plain `SKILL.md` files with `name`/`description` frontmatter — the de-facto portable skills format supported by:
+```
+skills/<skill-id>/
+├── SKILL.md          ← when to use + the standard's hard rules + workflow
+└── reference/*.md    ← the complete internalised content of the standard
+```
 
-- **OpenCode** — install globally under `~/.config/opencode/skills/`, or use the HTTP catalog below
-- **Claude Code / Claude apps** — copy to `~/.claude/skills/` or `.claude/skills/`
-- **Agents-emitting tools** (`agents.md` ecosystem) — copy to `.agents/skills/`
-- Any agent that can read files: point it at `references/` and load `SKILL.md`
+## Compatibility
 
-## Install (OpenCode)
+Skills are ordinary Markdown files with frontmatter — no agent-specific dependencies. Any AI that can read files can use them:
 
-### One-liner — HTTP catalog
-Add to any `opencode.json` / `opencode.jsonc` (global or project):
+- Agents with a skills system that auto-discovers `SKILL.md` directories: copy a skill folder into that system's skills location and it is advertised and loadable by ID.
+- Agents without a skills system: direct the agent once — *"Load `skills/<id>/SKILL.md`, then read `reference/*.md` fully before answering anything about this standard."* From then on it treats the standard as its own knowledge.
+
+## Install
+
+**Shared host (one user, applies to every project):** copy the folders you want from `skills/` into the host's global skills directory.
+
+**Per project/repo:** copy into the project's skills directory (e.g. `skills/`, `.opencode/skills/`, `.claude/skills/`, `.agents/skills/` — whatever your host uses, the folder containing `SKILL.md` is the skill).
+
+**Direct from this repo (no clone needed):** your skills catalog can load straight from this URL, which serves the catalog `index.json`:
+
+```
+https://raw.githubusercontent.com/strangerx003/standards-skills/master/skills/
+```
+
+For example, in a configuration supporting URL catalogs:
 
 ```jsonc
-{
-  "$schema": "https://opencode.ai/config.json",
-  "skills": ["https://raw.githubusercontent.com/strangerx003/standards-skills/master/skills/"]
-}
+{ "skills": ["https://raw.githubusercontent.com/strangerx003/standards-skills/master/skills/"] }
 ```
 
-### Manual
-```bash
-opencode skill install standards-skills    # if you publish via the CLI
-# or copy:
-git clone https://github.com/strangerx003/standards-skills
-cp -r skills/* ~/.config/opencode/skills/   # global, all standards
-cp -r skills/iec-61025 ~/.config/opencode/skills/   # just one standard
-```
+## Verify the install
 
-## Install (Claude)
-```bash
-cp -r skills/* ~/.claude/skills/
-```
-
-## Install (any agent)
-Give the agent this instruction:
-> Load and internalise `skills/<standard>/SKILL.md`, then read `skills/<standard>/reference/*.md` fully before answering anything about that standard.
-
-## Local development (this working copy)
-
-`opencode.json` in this folder registers `./skills` as a source, so the skills auto-load whenever you work from this directory. The original PDFs stay at the repo root as ground truth.
-
-## Verify an install
-
-After installing, ask the agent:
+Ask the agent a check question; an expert must answer:
 
 | Ask | Expert answer must contain |
 |---|---|
 | "Series system → which IEC 61025 gate and formula?" | OR gate, F_S = 1 − ∏(1−Fᵢ) |
-| "Can PPE alone close out a Catastrophic MIL-STD-882E hazard?" | No — severity 1 requires design-level mitigation; PPE is last in precedence, cannot reach level F |
+| "Can PPE alone close out a Catastrophic MIL-STD-882E hazard?" | No — severity 1 requires design-level mitigation; PPE is last in precedence, cannot reach probability level F |
 | "Give me the NUREG-0492 ground rules." | All five: fault written with what/when, component-vs-system rule, no miracles, complete-the-gate, no gate-to-gate |
 
-## Contributing a new standard
+## Adding a new standard
 
-1. Drop the PDF in the repo root.
-2. Extract text (`pypdf`) or OCR (`pypdfium2` + `tesseract`, see `.claude`-style workflow in git history).
-3. Read the full document, then write `skills/<id>/SKILL.md` (when-to-use, hard rules, workflow) + `skills/<id>/reference/<id>.md` (complete structured summary with equations/tables).
-4. Update `index.json` (bump `version`) and the table in this README.
+1. Drop the source document (PDF) in the repo root — it stays as ground truth.
+2. Extract its full text (embedded text via `pypdf`, or OCR via `pypdfium2` + `tesseract` for scans).
+3. Read the full document, then write `skills/<id>/SKILL.md` (when-to-use, hard rules, workflow) and `skills/<id>/reference/<id>.md` (complete structured summary: equations, tables, examples).
+4. Add the entry to `skills/index.json` (bump `version`) and to the table above.
