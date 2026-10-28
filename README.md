@@ -27,7 +27,7 @@ Add to any `opencode.json` / `opencode.jsonc` (global or project):
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
-  "skills": ["https://raw.githubusercontent.com/<YOUR-ORG>/standards-skills/main/skills/"]
+  "skills": ["https://raw.githubusercontent.com/strangerx003/standards-skills/master/skills/"]
 }
 ```
 
@@ -35,7 +35,7 @@ Add to any `opencode.json` / `opencode.jsonc` (global or project):
 ```bash
 opencode skill install standards-skills    # if you publish via the CLI
 # or copy:
-git clone <this repo>
+git clone https://github.com/strangerx003/standards-skills
 cp -r skills/* ~/.config/opencode/skills/   # global, all standards
 cp -r skills/iec-61025 ~/.config/opencode/skills/   # just one standard
 ```
