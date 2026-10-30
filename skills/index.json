@@ -1,4 +1,6 @@
 {
+  "version": "2",
+  "description": "Standards skills: each skill teaches an AI agent a published engineering standard. Portable and agent-neutral.",
   "skills": [
     {
       "name": "iec-61025",
@@ -14,6 +16,51 @@
       "name": "nureg-0492",
       "version": "1",
       "files": ["nureg-0492/SKILL.md", "nureg-0492/reference/nureg-0492.md"]
+    },
+    {
+      "name": "mil-std-1629a",
+      "version": "1",
+      "files": ["mil-std-1629a/SKILL.md", "mil-std-1629a/reference/mil-std-1629a.md"]
+    },
+    {
+      "name": "iec-60812",
+      "version": "1",
+      "files": ["iec-60812/SKILL.md", "iec-60812/reference/iec60812.md"]
+    },
+    {
+      "name": "iec-60300-3-3",
+      "version": "1",
+      "files": ["iec-60300-3-3/SKILL.md", "iec-60300-3-3/reference/iec60300-3-3.md"]
+    },
+    {
+      "name": "iec-61703",
+      "version": "1",
+      "files": ["iec-61703/SKILL.md", "iec-61703/reference/iec61703.md"]
+    },
+    {
+      "name": "iec-61649",
+      "version": "1",
+      "files": ["iec-61649/SKILL.md", "iec-61649/reference/iec61649.md"]
+    },
+    {
+      "name": "en-50126-1",
+      "version": "1",
+      "files": ["en-50126-1/SKILL.md", "en-50126-1/reference/en-50126-1.md"]
+    },
+    {
+      "name": "en-50126-2",
+      "version": "1",
+      "files": ["en-50126-2/SKILL.md", "en-50126-2/reference/en-50126-2.md"]
+    },
+    {
+      "name": "en-50126-3",
+      "version": "1",
+      "files": ["en-50126-3/SKILL.md", "en-50126-3/reference/en-50126-3.md"]
+    },
+    {
+      "name": "en-50129",
+      "version": "1",
+      "files": ["en-50129/SKILL.md", "en-50129/reference/en-50129.md"]
     }
   ]
 }

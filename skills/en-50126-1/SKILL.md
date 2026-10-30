@@ -1,0 +1,26 @@
+---
+name: EN 50126-1 Generic RAMS Process
+description: Apply EN 50126-1:2017 Railway applications RAMS Part 1 - the generic RAMS process - 12 life-cycle phases with activities and deliverables, RAM plan/Safety plan, hazard identification classes, risk acceptance principles (CoP/reference system/ERE), S1-S5 severity categories, THR, validation and verification, FRACAS, safety case structure. Use for railway RAMS programme management or questions about EN 50126-1.
+---
+
+## When to use
+
+Use for railway RAMS programme work under EN 50126-1:2017 (BS EN 50126-1:2017): life-cycle phases, RAM/Safety plans, hazard management, risk acceptance principles, safety requirements specification, validation, in-service RAMS — the *process* standard. (Safety methods/thresholds per part: `en-50126-2`; signalling equipment evidence: `en-50129`; rolling stock guidance: `en-50126-3`.)
+
+## Core knowledge
+
+Read `reference/en-50126-1.md` for the complete structured summary (all 12 phases, deliverable contents, Annex C matrices) before answering process questions.
+
+## Structure essentials (always honour)
+
+1. **12 phases (2017 edition, not 14)**: 1 Concept · 2 System definition & operational context · 3 Risk analysis & evaluation · 4 Specification of system requirements · 5 Architecture & apportionment · 6 Design & implementation · 7 Manufacture · 8 Integration · 9 System validation · 10 System acceptance · 11 Operation, maintenance & performance monitoring · 12 Decommissioning. Applicable to CCS, Rolling Stock, Fixed Installations at any level; three process blocks: risk assessment → implementation & demonstration → operation/maintenance/decommissioning, with a feedback loop (new risk → reassess from Phase 3 or reopen Phase 1). The **V-model** overlays phases 1–9.
+2. **RAMS definition**: Reliability (3.52) + Availability (3.6) + Maintainability (3.37) + Safety (3.64 = freedom from unacceptable risk); interlinked — a managed conflict (e.g. floored safe state destroying availability) is managed jointly, not sequentially. Security handled apart. RAM risk = loss of service value; safety risk = harm to people/environment.
+3. **Mandatory core documents** (6.5.1): task responsibilities, staff competence, **RAM plan (Phase 2, 7.3.2.2)** + **Safety plan (7.3.2.3)**, QMS (EN ISO 9001-equivalent), configuration management. RAM plan covers management (incl. **FRACAS from Phase 7**), reliability, availability, maintainability, logistic support; Safety plan covers safety policy/strategy, life-cycle safety tasks, analysis/engineering, deliverables, safety case preparation, hazard log management, audits (independence required).
+4. **Failure taxonomy (5.6.2)**: **random** failures (statistically estimable; treated by design/derating/quality/monitoring) vs **systematic** failures (human/process errors; controlled by processes and organisation, not numerically).
+5. **Risk acceptance principles (6.3, 50126-2 detail)**: ① Code of Practice, ② comparison with similar reference system, ③ Explicit Risk Estimation with formal **Risk Acceptance Criteria**; "broadly acceptable" hazards recorded and stayed in a defined proportion. **Hazard Log** maintained from Phase 3 continuously.
+6. **Severity/risk categories (Annex C)**: safety severity **S1–S5** (S1 many equivalent fatalities → S5 minor injury); financial SF1–SF3; equivalent-fatality convention **1 fatality ≈ 10 major ≈ 100 minor**; six frequency categories (Frequent → Highly improbable) with worked calibrations (e.g. Probable ≈ once/6 weeks–1/year); risk acceptance in 2-tier (Unacceptable/Acceptable) or 4-tier (**Intolerable / Undesirable / Tolerable / Negligible**). **THR** = per-hazard, per-hour, per *instance of function*; example: catastrophic credible-function failures acceptable-without-further-reduction if ≤ **1×10⁻⁹/h**; Basic integrity = TFFR > **10⁻⁵**/h. SIL definition in 3.70; SIL assignment machinery in EN 50126-2.
+7. **Safety risk-reduction order (5.9.2)**: inherently safe design → safety functions/barriers → safety-related information/operational rules; prevention preferred over mitigation (5.9.1). RAM risk strategies likewise (reliability design, redundancy, degraded modes, maintainability, resources).
+8. **V&V (6.7)**: verification in every phase; validation anchored at **Phase 4 (requirements validate)** and **Phase 9 (system validate)** — validation entity independent (EN 50126-2 clause 7); validation depth scales with safety integrity.
+9. **In-service (Phase 11)**: FRACAS (record: time, cause, description, action, safety ranking, detection mode, system-level effect) + performance monitoring + configuration-managed baseline; every change request gets an **impact analysis** deciding which life-cycle phases are re-applied.
+10. **Safety case (Clause 8)** — six parts: ① system definition ② **Quality Management Report** ③ **Safety Management Report** ④ **Technical Safety Report** ⑤ related safety cases (SRACs fulfilled or carried forward) ⑥ Conclusion ("adequately safe subject to SRAC compliance").
+11. Tailoring is normal; always normative: responsibilities, competence, RAM plan + Safety plan, QMS, configuration management. Re-use/cross-acceptance follows the 7-step difference/risk/adaptation argument (6.5.4).
